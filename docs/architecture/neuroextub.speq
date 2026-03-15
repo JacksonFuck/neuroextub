@@ -1,0 +1,58 @@
+VERSION 0.2.0
+
+PROJECT
+  NAME NeuroExtub
+  LANG TypeScript
+  STACK React, Vite, CSS_Modules
+  ARCH layered
+  DEPS
+    RUNTIME react, react-dom, lucide-react
+    DEV vitest, @testing-library/react, vite
+
+ENTITY
+  patient,
+  assessment,
+  scores,
+  recommendation
+
+VOCABULARY
+  PatientIdentification    # Dados demográficos do paciente
+  ReadinessChecklist      # Pré-requisitos para desmame
+  NeurologicalAssessment   # Avaliação de consciência e tronco
+  RespiratoryAssessment    # Parâmetros ventilatórios e TRE
+  AirwayProtection        # STAGE score e deglutição
+  HemodynamicAssessment    # Estabilidade e vasopressores
+  CuffLeakTest            # Teste de escape de via aérea
+  ClinicalDecision        # Algoritmo de recomendação final
+  ClinicalReport          # Documento gerado para PDF
+
+LAYERS
+  UI
+    OWNS views, components
+    CALLS LOGIC, UTILS
+  LOGIC
+    OWNS calculation_rules, assessment_state
+    CALLS UTILS
+  UTILS
+    OWNS math_helpers, report_generator, constants
+    BOUNDARY internal
+
+CONTRACTS
+  # Invariantes de Negócio
+  scores.four ALWAYS between 0 and 16
+  scores.visage ALWAYS between 0 and 8
+  scores.stage ALWAYS between 0 and 10
+  scores.biper ALWAYS between 0 and 12
+  
+  assessment.prerequisites REQUIRES 8_items_checked_for_readiness
+
+  FLOW calculation
+    1. [LOGIC] validate_inputs
+    2. [LOGIC] calculate_individual_scores
+    3. [LOGIC] determine_risk_factors
+    4. [LOGIC] apply_recommendation_algorithm
+    ATOMIC true
+
+CHANGELOG
+  0.1.0
+    ADDED Initial architectural contract for NEUROEXTUB refactoring.

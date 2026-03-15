@@ -1,0 +1,114 @@
+.header {
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.title {
+    margin: 0;
+    font-size: 20px;
+    /* from 18px */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.accentBlue {
+    color: #3b82f6;
+}
+
+.accentGreen {
+    color: #10b981;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 13px;
+    /* from 12px */
+    margin-left: 8px;
+}
+
+.author {
+    font-size: 10px;
+    color: #475569;
+}
+
+.version {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.progressTrack {
+    display: flex;
+    gap: 2px;
+    margin-top: 10px;
+}
+
+.stepIndicator {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    background: rgba(100, 116, 139, 0.2);
+    transition: all 0.3s;
+}
+
+.stepIndicator.completed {
+    background: #10b981;
+}
+
+.stepIndicator.active {
+    background: #3b82f6;
+}
+
+.statusRow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.phaseInfo {
+    font-size: 13px;
+    /* from 11px */
+    color: #60a5fa;
+    font-weight: 700;
+}
+
+.scoresBrief {
+    font-size: 12px;
+    /* from 11px */
+    color: var(--text-dim);
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 10px 16px;
+    }
+
+    .title {
+        font-size: 110%;
+    }
+
+    .subtitle {
+        display: none;
+        /* Hide on very small screens to save space */
+    }
+}
